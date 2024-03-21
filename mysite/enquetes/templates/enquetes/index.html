@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title> App Enquetes </title>
+    </head>
+    <body>
+        <h1>Disciplina:DSweb 2024.1 <br> <h2> 3° período <br><br> Matricula: 20231014040008 <br><br> Aluno: Luiz Gustavo Oliveira Rocha </h2> </h1>
+        <br><br>
+        <h1>Aplicação de Enquetes - DSWeb 2023.1</h1>
+        {% if lista_enquetes %}
+            <h3>Lista das Enquetes Cadastradas</h3>
+            <ul>
+                {% for p in lista_enquetes %}
+                    <li>
+                        <a href="/enquetes/{{p.id}}/">
+                            {{p.texto}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>Nenhuma enquete cadastrada até o momento!</h3>
+        {% endif %}
+    </body>
+</html>
