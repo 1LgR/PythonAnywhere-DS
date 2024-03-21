@@ -4,9 +4,9 @@ from .models import Pergunta
 from django.template import loader
 
 def index(request):
-    enquete = Pergunta.objects.all()
+    enquetes = Pergunta.objects.all()
     template = loader.get_template('enquetes/index.html')
-    contexto = {'lista_enquetes': enquete}
+    contexto = {'lista_enquetes': enquetes}
     return HttpResponse(template.render(contexto, request))
 
 def detalhes(request, pergunta_id):
