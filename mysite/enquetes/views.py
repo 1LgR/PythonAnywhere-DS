@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Pergunta
 
@@ -8,8 +8,9 @@ def index(request):
     return render(request, 'enquetes/index.html', contexto)
 
 def detalhes(request, pergunta_id):
-    resultado = 'DETALHES da enquente de número %s'
-    return HttpResponse(resultado % pergunta_id)
+    pergunta = get_object_or_404(Pergunta, pk = pergunta_id)
+    contexto = {'enquete': pergunta}
+    return render(request, 'enquetes/detalhes.html', contexto)
 
 def votacao(request, pergunta_id):
     resultado = 'VOTAÇÃO da enquente de número %s'
@@ -28,5 +29,10 @@ def index(request):
     template = loader.get_template('enquetes/index.html')
     contexto = {'lista_enquetes': enquetes}
     return HttpResponse(template.render(contexto, request))
+
+--> View DETALHES - Versão 1
+def detalhes(request, pergunta_id):
+    resultado = 'DETALHES da enquente de número %s'
+    return HttpResponse(resultado % pergunta_id)
 
 """
