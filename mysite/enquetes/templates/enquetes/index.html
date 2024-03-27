@@ -2,23 +2,26 @@
     <head>
         <title> App Enquetes </title>
     </head>
-    <body>
-        <h1>Disciplina:DSweb 2024.1 <br> <h2> 3° período <br><br> Matricula: 20231014040008 <br><br> Aluno: Luiz Gustavo Oliveira Rocha </h2> </h1>
+    <body style="background-image: url('https://i.pinimg.com/originals/c7/60/5d/c7605d39fed0bce012e5cd4651a8a332.jpg');">
+        <h1 style="color:white;">Disciplina:DSweb 2024.1 <br> <h2 style="color:white;"> 3° período <br><br> Matricula: 20231014040008 <br><br> Aluno: Luiz Gustavo Oliveira Rocha </h2> </h1>
         <br><br>
-        <h1>Aplicação de Enquetes - DSWeb 2023.1</h1>
+        <h1 style="color:white;">Aplicação de Enquetes - DSWeb 2023.1</h1>
+        <h2 style="color:white;">Enquetes sobre o filme o espetacular homem-aranha</h2>
         {% if lista_enquetes %}
-            <h3>Lista das Enquetes Cadastradas</h3>
-            <ul>
+            <h3 style="color:white;">Lista das Enquetes Cadastradas</h3>
+            <ul style="color:white;">
                 {% for p in lista_enquetes %}
-                    <li>
-                        <a href="/enquetes/{{p.id}}/">
+                    <li style="color:white;">
+                        <a style="color:white;" href="{% url 'enquetes:detalhes' p.id %}">
                             {{p.texto}}
                         </a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <h3>Nenhuma enquete cadastrada até o momento!</h3>
+            <h3 style="color:white;">Nenhuma enquete cadastrada até o momento!</h3>
         {% endif %}
+        <hr>
+        <a style="color:white;" href="{% url 'raiz:index' %}">Voltar</a>
     </body>
 </html>

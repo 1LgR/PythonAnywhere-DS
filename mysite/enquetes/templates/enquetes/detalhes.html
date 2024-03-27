@@ -1,17 +1,33 @@
 <html>
     <head>
-        <tittle>App Enquetes</tittle>
+        <title>App Enquetes</title>
     </head>
-    <body>
-        <h1>Aplicação de Enquetes - DSweb 2024.1</h1>
-        <h2>Enquete #{{ enquete.id }}</h2>
-        <h2>{{ enquete.texto }}</h2>
-        <p><i>{{ enquete.data_pub }}</i></p>
-        <p>Selecione a alternativa desejada:</p>
-        <ul>
+    <body style="background-image: url('https://i.pinimg.com/originals/c7/60/5d/c7605d39fed0bce012e5cd4651a8a332.jpg');">
+        <h1 style="color:white;">Aplicação de Enquetes - DSweb 2024.1</h1>
+        <h2 style="color:white;">Enquete #{{ enquete.id }}</h2>
+        <h2 style="color:white;">{{ enquete.texto }}</h2>
+        <p style="color:white;"><i>{{ enquete.data_pub }}</i></p>
+        {% if error %}
+            <p style="color:white;"><b>{{ error }}</b></p>
+        {% endif %}
+        <p style="color:white;">Selecione a alternativa desejada:</p>
+        <form action ="{% url 'enquetes:votação' enquete.id %}"
+            method="post">
+        {% csrf_token %}
+        <ul style="color:white;">
         {% for alt in enquete.alternativa_set.all %}
-        <li>{{ alt.texto }}</li>
+            <li style="color:white;">
+                <input style="color:white;" type="radio" name="escolha" value="{{ alt.id }}"
+                        id="alt{{ forloop.counter }}"/>
+                <label for="alt{{ forloop.counter }}">
+                    {{ alt.texto }}
+                </label>
+            </li>
         {% endfor %}
         </ul>
+        <input style="color:black;" type="submit" value="Registre o seu voto"/>
+        </form>
+        <hr>
+        <a style="color:white;" href="{% url 'enquetes:index' %}">Voltar</a>
     </body>
 </html>
