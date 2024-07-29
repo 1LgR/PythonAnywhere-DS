@@ -1,23 +1,28 @@
+{% load static %}
+
 <html>
     <head>
         <title>App Enquetes</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'enquetes/css/style.css' %}">
     </head>
-    <body style="background-image: url('https://i.pinimg.com/originals/c7/60/5d/c7605d39fed0bce012e5cd4651a8a332.jpg');">
-        <h1 style="color:white;">Aplicação de Enquetes - DSweb 2024.1</h1>
-        <h2 style="color:white;">PARCIAL da Enquete #{{ enquete.id }}</h2>
-        <h2 style="color:white;">{{ enquete.texto }}</h2>
-        <p style="color:white;"><i>{{ enquete.data_pub }}</i></p>
-        <ul style="color:white;">
-        {% for alt in enquete.alternativa_set.all %}
-            <li style="color:white;">
-                    {{ alt.texto }} == {{ alt.quant_votos }}
-                    voto{{ alt.quant_votos | pluralize }}
-            </li>
-        {% endfor %}
-        </ul>
+    <body>
+        <h1>Aplicação de Enquetes - DSweb 2024.1</h1>
+        <h2>PARCIAL da Enquete #{{ enquete.id }}</h2>
+        <h2>{{ enquete.texto }}</h2>
+        <div class="resultado">
+          <p><i>{{ enquete.data_pub }}</i></p>
+          <ul>
+            {% for alt in pergunta.alternativa_set.all %}
+              <li>
+                {{ alt.texto }} == {{ alt.quant_votos }}
+                voto{{ alt.quant_votos | pluralize }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
         <hr>
-        <button><a style="color:black;" href="{% url 'enquetes:detalhes' enquete.id %}">Votar novamente?</a></button>
+        <a href="{% url 'enquetes:detalhes' pergunta.id %}" class="black"><button>Votar novamente?</button></a>
         <br>
-        <button><a style="color:black;" href="{% url 'enquetes:index' %}">Voltar</a></button>
+        <a href="{% url 'enquetes:index' %}" class="black"><button>Voltar</button></a>
     </body>
 </html>

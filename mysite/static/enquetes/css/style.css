@@ -1,0 +1,187 @@
+.black{
+    color: black;
+
+}
+
+li{
+    color: white;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+a:hover {
+    text-shadow: 0 0 10px #ffffff;
+}
+
+a:active {
+    color: #00ff00;
+    text-shadow: 0 0 15px #ffffff;
+}
+
+a:visited {
+    color: #d3d3d3;
+}
+
+a::before {
+    content: url('spiderman-icon.png');
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+body{
+    background-image: url('https://i.pinimg.com/originals/c7/60/5d/c7605d39fed0bce012e5cd4651a8a332.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: #fff;
+}
+
+p {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.6;
+}
+
+
+ul{
+    color: white;
+}
+
+button {
+  background-color: #f4511e;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d43f1a;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+form ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+form li {
+  margin-bottom: 10px;
+}
+
+form input[type="radio"] {
+  margin-right: 8px;
+}
+
+form label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: inline;
+}
+
+form input[type="submit"] {
+  background-color: #f4511e;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #d43f1a;
+}
+
+form p.error {
+  color: #d43f1a;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.resultado p {
+  font-style: italic;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.resultado ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resultado ul li {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.resultado ul li:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+.resultado ul li span {
+  font-weight: bold;
+  color: #f4511e;
+}
+

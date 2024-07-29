@@ -1,27 +1,30 @@
+{% load static %}
+
 <html>
     <head>
         <title> App Enquetes </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'enquetes/css/style.css' %}">
     </head>
-    <body style="background-image: url('https://i.pinimg.com/originals/c7/60/5d/c7605d39fed0bce012e5cd4651a8a332.jpg');">
-        <h1 style="color:white;">Disciplina:DSweb 2024.1 <br> <h2 style="color:white;"> 3° período <br><br> Matricula: 20231014040008 <br><br> Aluno: Luiz Gustavo Oliveira Rocha </h2> </h1>
+    <body>
+        <h1>Disciplina:DSweb 2024.1 <br> <h2> 3° período <br><br> Matricula: 20231014040008 <br><br> Aluno: Luiz Gustavo Oliveira Rocha </h2> </h1>
         <br><br>
-        <h1 style="color:white;">Aplicação de Enquetes - DSWeb 2023.1</h1>
-        <h2 style="color:white;">Enquetes sobre o filme o espetacular homem-aranha</h2>
+        <h1>Aplicação de Enquetes - DSWeb 2023.1</h1>
+        <h2>Enquetes sobre o filme o espetacular homem-aranha</h2>
         {% if lista_enquetes %}
-            <h3 style="color:white;">Lista das Enquetes Cadastradas</h3>
-            <ul style="color:white;">
+            <h3>Lista das Enquetes Cadastradas</h3>
+            <ul>
                 {% for p in lista_enquetes %}
-                    <li style="color:white;">
-                        <a style="color:white;" href="{% url 'enquetes:detalhes' p.id %}">
-                            {{p.texto}}
-                        </a>
+                    <li>
+                        <a href="{% url 'enquetes:detalhes' p.id %}">
+                            {{p.texto}}</a>&nbsp;&nbsp;
+                            (<a href = "{% url 'enquetes:resultado' p.id %}">ver parcial</a>)
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <h3 style="color:white;">Nenhuma enquete cadastrada até o momento!</h3>
+            <h3>Nenhuma enquete cadastrada até o momento!</h3>
         {% endif %}
         <hr>
-        <button><a style="color:black;" href="{% url 'raiz:index' %}">Voltar</a></button>
+        <a href="{% url 'raiz:index' %}" class="black"><button><span>Voltar</span></button></a>
     </body>
 </html>
