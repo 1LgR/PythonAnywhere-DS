@@ -27,10 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['LuizGustavoRocha.pythonanywhere.com']
 
+LOGIN_REDIRECT_URL = 'index'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'JornalDigital.apps.JornaldigitalConfig',
+    'peidigital.apps.PeidigitalConfig',
     'raiz.apps.RaizConfig',
     'enquetes.apps.EnquetesConfig',
     'django.contrib.admin',

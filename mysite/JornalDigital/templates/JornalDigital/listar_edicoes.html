@@ -1,0 +1,16 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Todas as Edições</h1>
+    <div class="list-group">
+    {% for edicao in edicoes %}
+        <a href="{% url 'exibir_edicao' edicao.id %}" class="list-group-item list-group-item-action">
+            {{ edicao.titulo }} - {{ edicao.data }}
+        </a>
+    {% empty %}
+        <p>Nenhuma edição disponível.</p>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">{{ noticia.titulo }}</h1>
+    <p>Autor: {{ noticia.autor.username }} | Data: {{ noticia.data_publicacao }}</p>
+    <div class="card mb-4">
+        <div class="card-body">
+            {{ noticia.conteudo|linebreaks }}
+        </div>
+    </div>
+
+    <h2>Comentários</h2>
+    {% for comentario in comentarios %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ comentario.texto }}</p>
+                <small>Por {{ comentario.autor.username }} em {{ comentario.data }}</small>
+            </div>
+        </div>
+    {% empty %}
+        <p>Nenhum comentário ainda.</p>
+    {% endfor %}
+
+    <h3>Adicionar Comentário</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+    </form>
+</div>
+{% endblock %}

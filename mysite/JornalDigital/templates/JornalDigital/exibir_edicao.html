@@ -1,0 +1,18 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">{{ edicao.titulo }}</h1>
+    <p>Data: {{ edicao.data }}</p>
+    <h2>Notícias desta Edição:</h2>
+    <div class="list-group">
+    {% for noticia in edicao.noticias.all %}
+        <a href="{% url 'exibir_noticia' noticia.id %}" class="list-group-item list-group-item-action">
+            {{ noticia.titulo }}
+        </a>
+    {% empty %}
+        <p>Nenhuma notícia disponível nesta edição.</p>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

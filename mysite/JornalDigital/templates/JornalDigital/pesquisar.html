@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Resultados da Pesquisa</h1>
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Pesquisar notícias..." value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </form>
+
+    {% if query %}
+        <h2>Resultados para "{{ query }}":</h2>
+        {% if noticias %}
+            <div class="list-group">
+            {% for noticia in noticias %}
+                <a href="{% url 'exibir_noticia' noticia.id %}" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ noticia.titulo }}</h5>
+                    <p class="mb-1">{{ noticia.conteudo|truncatewords:30 }}</p>
+                    <small>Por {{ noticia.autor.username }} em {{ noticia.data_publicacao }}</small>
+                </a>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p>Nenhum resultado encontrado para "{{ query }}".</p>
+        {% endif %}
+    {% else %}
+        <p>Use o campo de pesquisa acima para buscar notícias.</p>
+    {% endif %}
+</div>
+{% endblock %}

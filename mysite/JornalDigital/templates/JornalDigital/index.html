@@ -1,0 +1,23 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Bem-vindo ao Jornal Digital</h1>
+    {% if edicao %}
+        <h2>Última Edição: {{ edicao.titulo }}</h2>
+        <p>Data: {{ edicao.data }}</p>
+        <h3>Notícias:</h3>
+        <ul class="list-group">
+        {% for noticia in edicao.noticias.all %}
+            <li class="list-group-item">
+                <a href="{% url 'exibir_noticia' noticia.id %}">{{ noticia.titulo }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhuma notícia disponível nesta edição.</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma edição disponível no momento.</p>
+    {% endif %}
+</div>
+{% endblock %}
