@@ -7,7 +7,7 @@ class Edicao(models.Model):
 
     def __str__(self):
         return f"{self.titulo} - {self.data}"
-        
+
 class Tag(models.Model):
     nome = models.CharField(max_length=50, unique=True)
 

@@ -16,6 +16,14 @@
             <div class="card-body">
                 <p>{{ comentario.texto }}</p>
                 <small>Por {{ comentario.autor.username }} em {{ comentario.data }}</small>
+                
+                {% if comentario.autor == request.user or request.user.is_staff %}
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete_comentario_id" value="{{ comentario.id }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                    </form>
+                {% endif %}
             </div>
         </div>
     {% empty %}
@@ -29,4 +37,5 @@
         <button type="submit" class="btn btn-primary">Enviar Comentário</button>
     </form>
 </div>
+
 {% endblock %}

@@ -9,4 +9,25 @@
         <button type="submit" class="btn btn-primary">Salvar Edição</button>
     </form>
 </div>
+
+<script>
+    $(function() {
+        $(".datepicker").datepicker({
+            format: 'dd/mm/yyyy', 
+            endDate: new Date(), 
+            autoclose: true
+        }).on('changeDate', function(e) {
+            var date = e.format();
+            var parts = date.split('/');
+            var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0]; 
+            $(this).val(date); 
+            $(this).attr('data-date', formattedDate); 
+        });
+
+        $('.datepicker').prop('readonly', true).on('focus', function() {
+            $(this).blur();
+        });
+    });
+</script>
+
 {% endblock %}

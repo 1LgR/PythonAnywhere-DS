@@ -29,6 +29,8 @@ ALLOWED_HOSTS = ['LuizGustavoRocha.pythonanywhere.com']
 
 LOGIN_REDIRECT_URL = 'index'
 
+LOGOUT_REDIRECT_URL = 'index'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -108,9 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

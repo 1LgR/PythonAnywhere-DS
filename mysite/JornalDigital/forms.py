@@ -2,11 +2,26 @@ from django import forms
 from .models import Edicao, Noticia, Comentario
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+import datetime
 
 class EdicaoForm(forms.ModelForm):
     class Meta:
         model = Edicao
         fields = ['data', 'titulo']
+        widgets = {
+            'data': forms.DateInput(attrs={
+                'class': 'datepicker',
+                'placeholder': 'Selecione uma data',
+                'type': 'text',
+            }),
+        }
+
+    def clean_data(self):
+        data = self.cleaned_data['data']
+        if data > datetime.date.today():
+            raise ValidationError('A data não pode ser uma data futura.')
+        return data
 
 class NoticiaForm(forms.ModelForm):
     class Meta:

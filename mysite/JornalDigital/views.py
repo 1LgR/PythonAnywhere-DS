@@ -5,11 +5,10 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Edicao, Noticia, Comentario
 from .forms import EdicaoForm, NoticiaForm, ComentarioForm, UserForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login as auth_login
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -38,7 +37,7 @@ def login_user(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
-                auth_login(request, user)
+                login(request, user)
                 return redirect('JonalDigital/index.html')
             else:
                 messages.error(request, 'Usuário ou senha incorretos.')
@@ -46,6 +45,10 @@ def login_user(request):
             messages.error(request, 'Usuário ou senha incorretos.')
     form = AuthenticationForm()
     return render(request, 'JornalDigital/login.html', {'form': form})
+
+def logout(request):
+    logout(request)
+    return redirect('index')
 
 class ListarEdicoesView(ListView):
     model = Edicao
@@ -64,10 +67,21 @@ class ExibirNoticiaView(View):
         noticia = get_object_or_404(Noticia, id=noticia_id)
         comentarios = noticia.comentarios.all()
         form = ComentarioForm()
-        return render(request, 'JornalDigital/exibir_noticia.html', {'noticia': noticia, 'comentarios': comentarios, 'form': form})
+        return render(request, 'JornalDigital/exibir_noticia.html', {
+            'noticia': noticia,
+            'comentarios': comentarios,
+            'form': form
+        })
 
     def post(self, request, noticia_id, *args, **kwargs):
         noticia = get_object_or_404(Noticia, id=noticia_id)
+
+        if 'delete_comentario_id' in request.POST:
+            comentario = get_object_or_404(Comentario, id=request.POST['delete_comentario_id'])
+            if comentario.autor == request.user or request.user.is_staff:
+                comentario.delete()
+            return redirect('exibir_noticia', noticia_id=noticia.id)
+
         form = ComentarioForm(request.POST)
         if form.is_valid():
             comentario = form.save(commit=False)
@@ -75,8 +89,13 @@ class ExibirNoticiaView(View):
             comentario.autor = request.user
             comentario.save()
             return redirect('exibir_noticia', noticia_id=noticia.id)
+
         comentarios = noticia.comentarios.all()
-        return render(request, 'JornalDigital/exibir_noticia.html', {'noticia': noticia, 'comentarios': comentarios, 'form': form})
+        return render(request, 'JornalDigital/exibir_noticia.html', {
+            'noticia': noticia,
+            'comentarios': comentarios,
+            'form': form
+        })
 
 
 class CadastrarEdicaoView(LoginRequiredMixin, CreateView):

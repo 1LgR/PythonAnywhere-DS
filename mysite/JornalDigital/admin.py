@@ -2,17 +2,17 @@ from django.contrib import admin
 from .models import Edicao, Noticia, Comentario
 
 # Inline para Noticia, permitindo que notícias sejam exibidas dentro de uma Edição
-class NoticiaInline(admin.TabularInline):  # ou admin.StackedInline
+class NoticiaInline(admin.TabularInline):
     model = Noticia
-    extra = 1  # Número de formulários de notícias extras para adicionar (opcional)
-    fields = ('titulo', 'autor', 'data_publicacao')  # Campos que serão exibidos no inline
+    extra = 1
+    fields = ('titulo', 'autor', 'data_publicacao')
 
 class EdicaoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'data')
     search_fields = ('titulo',)
     list_filter = ('data',)
     ordering = ('-data',)
-    inlines = [NoticiaInline]  # Incluindo as notícias associadas
+    inlines = [NoticiaInline]
 
 class NoticiaAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'edicao', 'autor', 'data_publicacao')
