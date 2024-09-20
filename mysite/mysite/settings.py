@@ -35,7 +35,6 @@ LOGOUT_REDIRECT_URL = 'index'
 
 INSTALLED_APPS = [
     'JornalDigital.apps.JornaldigitalConfig',
-    'peidigital.apps.PeidigitalConfig',
     'raiz.apps.RaizConfig',
     'enquetes.apps.EnquetesConfig',
     'django.contrib.admin',
