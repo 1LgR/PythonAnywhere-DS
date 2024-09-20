@@ -11,23 +11,25 @@
 </div>
 
 <script>
-    $(function() {
-        $(".datepicker").datepicker({
-            format: 'dd/mm/yyyy', 
-            endDate: new Date(), 
-            autoclose: true
-        }).on('changeDate', function(e) {
-            var date = e.format();
-            var parts = date.split('/');
-            var formattedDate = parts[2] + '-' + parts[1] + '-' + parts[0]; 
-            $(this).val(date); 
-            $(this).attr('data-date', formattedDate); 
-        });
+$(function() {
+    $(".datepicker").datepicker({
+        dateFormat: "dd/mm/yy",
+        endDate: new Date(),
+        autoclose: true,
+        onSelect: function(dateText, inst) {
+            // Valida a data de forma mais rigorosa
+            var parts = dateText.split('/');
+            var day = parseInt(parts[0]);
+            var month = parseInt(parts[1]);
+            var year = parseInt(parts[2]);
 
-        $('.datepicker').prop('readonly', true).on('focus', function() {
-            $(this).blur();
-        });
+            if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year > 1900) {
+                $(this).val($.datepicker.formatDate('dd/mm/yy', new Date(year, month - 1, day)));
+            } else {
+                alert("Data inválida. Por favor, selecione uma data válida.");
+            }
+        }
     });
+});
 </script>
-
 {% endblock %}

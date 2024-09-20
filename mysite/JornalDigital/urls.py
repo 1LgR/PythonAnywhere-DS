@@ -3,7 +3,6 @@ from .views import (
     IndexView, ListarEdicoesView, ExibirEdicaoView, ExibirNoticiaView,
     CadastrarEdicaoView, CadastrarNoticiaView, PesquisarView
 )
-from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [

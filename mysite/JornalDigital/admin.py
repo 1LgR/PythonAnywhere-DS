@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Edicao, Noticia, Comentario
 
-# Inline para Noticia, permitindo que notícias sejam exibidas dentro de uma Edição
+
 class NoticiaInline(admin.TabularInline):
     model = Noticia
     extra = 1
@@ -29,7 +29,7 @@ class ComentarioAdmin(admin.ModelAdmin):
     ordering = ('-data_criacao',)
     raw_id_fields = ('noticia', 'autor')
 
-# Registrando os modelos no admin
+
 admin.site.register(Edicao, EdicaoAdmin)
 admin.site.register(Noticia, NoticiaAdmin)
 admin.site.register(Comentario, ComentarioAdmin)
